@@ -1,11 +1,7 @@
 #ifndef _ESP32ZabbixSender_H_
 #define _ESP32ZabbixSender_H_
 
-#if ARDUINO >= 100
 #include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
 
 #include <WiFi.h>
 #define ZABBIXMAXLEN 300 // max 256byte packet
@@ -18,13 +14,15 @@ public:
 	void Init(IPAddress ZabbixServerAddr, uint16_t ZabbixServerPort, String ZabbixItemHostName);
 	int Send(void);
 	void ClearItem(void);
-	void AddItem(String key, float value);
+	void AddItemFloat(String key, float value);
+	void AddItemInt(String key, float value);
+	void AddItemString(String key, String value);
 
 private:
 	int createZabbixPacket(void);
 	struct zabbixCell {
 		String key;
-		float val;
+		String val;
 	};
 	WiFiClient zClient;
 	IPAddress zAddr;

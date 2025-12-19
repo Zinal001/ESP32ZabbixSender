@@ -26,12 +26,14 @@ void setup() {
 
 void loop() {
 	static int counter1 = 1;
-	static int counter2 = 1;
-	checkConnection();							  // Check wifi connection
-	zSender.ClearItem();						  // Clear ZabbixSender's item list
-	zSender.AddItem("counter1", (float)counter1); // Exmaple value of zabbix trapper item
-	zSender.AddItem("counter2", (float)counter2); // Exmaple value of zabbix trapper item
-	if (zSender.Send() == EXIT_SUCCESS) {		  // Send zabbix items
+	static float counter2 = 1;
+	static String stringValue = "Hello World!";
+	checkConnection();									// Check wifi connection
+	zSender.ClearItem();								// Clear ZabbixSender's item list
+	zSender.AddItemInt("counter1", counter1);			// Example value of an zabbix integer trapper item
+	zSender.AddItemFloat("counter2", counter2);			// Example value of an zabbix float trapper item
+	zSender.AddItemString("stringvalue", stringValue);	// Example value of an string zabbix trapper item
+	if (zSender.Send() == EXIT_SUCCESS) {				// Send zabbix items
 		Serial.println("ZABBIX SEND: OK");
 	} else {
 		Serial.println("ZABBIX SEND: NG");

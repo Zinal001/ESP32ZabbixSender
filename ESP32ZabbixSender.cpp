@@ -43,7 +43,19 @@ void ESP32ZabbixSender::ClearItem(void) { // Clear item list
 	zabbixItemSize = 0;
 }
 
-void ESP32ZabbixSender::AddItem(String key, float value) {
+void ESP32ZabbixSender::AddItemFloat(String key, float value) {
+	zabbixItemList[zabbixItemSize].key = key;
+	zabbixItemList[zabbixItemSize].val = String(value);
+	zabbixItemSize++;
+}
+
+void ESP32ZabbixSender::AddItemInt(String key, int value) {
+	zabbixItemList[zabbixItemSize].key = key;
+	zabbixItemList[zabbixItemSize].val = String(value);
+	zabbixItemSize++;
+}
+
+void ESP32ZabbixSender::AddItemString(String key, String value) {
 	zabbixItemList[zabbixItemSize].key = key;
 	zabbixItemList[zabbixItemSize].val = value;
 	zabbixItemSize++;
