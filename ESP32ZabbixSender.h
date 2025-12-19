@@ -15,7 +15,7 @@ public:
 	int Send(void);
 	void ClearItem(void);
 	void AddItemFloat(String key, float value);
-	void AddItemInt(String key, float value);
+	void AddItemInt(String key, int value);
 	void AddItemString(String key, String value);
 
 private:
